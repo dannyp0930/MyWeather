@@ -4,11 +4,12 @@
 
 ## 목차
 
-1. Styles
+1. [Styles](#1.-Styles)
+1. [ScrollView](#2.-ScrollView)
 
 ## 1. Styels
 
-![Styles](README.assets/Styles.png)
+![Styles](README.assets/Styles.png){: width="480"}
 
 ```javascript
 import React from "react";
@@ -68,3 +69,59 @@ const styles = StyleSheet.create({
 - 크기를 조절할 때 `flex`속성을 사용하면 편리하다.
 - 기본적으로 `flexDirection`은 column이다.
 
+## 2. ScrollView
+
+native는 여러개의 컴포넌트를 쌓아두면 자동으로 스크롤이 생기지 않는다. 이를 위해서 `ScrollView` 컴포넌트를 사용해야 한다.
+
+```javascript
+import { Dimensions ... } from "react-native";
+
+const { width: SCREEN_WIDTH } = Dimensions.get("window");
+
+export default function App() {
+  return (
+      
+    ...
+      
+      <ScrollView
+      	contentContainerStyle={styles.weather}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+      >
+        <View style={styles.day}> ... </View>
+        <View style={styles.day}> ... </View>
+        <View style={styles.day}> ... </View>
+        <View style={styles.day}> ... </View>
+      </ScrollView>
+
+    ...
+    
+  );
+}
+
+const styles = StyleSheet.create({
+
+    ...
+    
+  weather: {},
+  day: {
+    width: SCREEN_WIDTH,
+    alignItems: "center",
+  },
+    
+    ...
+    
+});
+```
+
+![ScrollView](README.assets/ScrollView.gif){: width="480"}
+
+- ScrollView는 기본적으로 column을 기준으로 한다.
+  - 이를 바꾸기 위해 props로 `horizontal`을 추가한다.
+- ScrollView의 스타일을 지정하기 위해 `contentContainerStyle` props를 사용한다.
+- ScrollVIew의 스크롤 범위를 지정하기 위해 `pagingEnabled` props를 사용한다.
+- ScrollVIew 하단의 페이지 표시줄을 지우기 위해 `showsHorizontalScrollIndicator` props를 사용한다.
+- ScrollView를 사용했기 때문에 기존에 지정해 두었던 `flex` 속성이 작동하지 않는다.
+  - `weather`와 `day`의 `flex` 속성을 지우자.
+  - `day`의 width를 지정하기 위해 `Dimensions` API를 사용해 전체 너비를 가져오자.
