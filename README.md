@@ -9,7 +9,7 @@
 
 ## 1. Styels
 
-![Styles](README.assets/Styles.png){: width="480"}
+<img src="README.assets/Styles.png" width="200" />
 
 ```javascript
 import React from "react";
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-![ScrollView](README.assets/ScrollView.gif){: width="480"}
+<img src="README.assets/ScrollView.gif" width="200" />
 
 - ScrollView는 기본적으로 column을 기준으로 한다.
   - 이를 바꾸기 위해 props로 `horizontal`을 추가한다.
